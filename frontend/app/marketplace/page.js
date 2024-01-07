@@ -14,7 +14,7 @@ const MarketPlace = () => {
       description:
         'The Aztec Grants Program supports developers building with, and contributing to, the Noir programming language and the Aztec network.',
       proposalLink: '/path/to/proposal',
-      grantAmount: "500'000",
+      grantAmount: "500'00",
       maxPerApplication: "20'000",
       tags: [
         { name: 'Data', bgColor: 'bg-purple-300' },
@@ -32,7 +32,7 @@ const MarketPlace = () => {
       description:
         'The Aztec Grants Program supports developers building with, and contributing to, the Noir programming language and the Aztec network.',
       proposalLink: '/path/to/proposal',
-      grantAmount: "500'000",
+      grantAmount: "500'00",
       maxPerApplication: "20'000",
       tags: [
         { name: 'Data', bgColor: 'bg-purple-300' },
@@ -50,7 +50,7 @@ const MarketPlace = () => {
       description:
         'The Aztec Grants Program supports developers building with, and contributing to, the Noir programming language and the Aztec network.',
       proposalLink: '/path/to/proposal',
-      grantAmount: "500'000",
+      grantAmount: "500'00",
       maxPerApplication: "20'000",
       tags: [
         { name: 'Data', bgColor: 'bg-purple-300' },
@@ -68,7 +68,7 @@ const MarketPlace = () => {
       description:
         'The Aztec Grants Program supports developers building with, and contributing to, the Noir programming language and the Aztec network.',
       proposalLink: '/path/to/proposal',
-      grantAmount: "500'000",
+      grantAmount: "500'00",
       maxPerApplication: "20'000",
       tags: [
         { name: 'Data', bgColor: 'bg-purple-300' },
@@ -86,7 +86,7 @@ const MarketPlace = () => {
       description:
         'The Aztec Grants Program supports developers building with, and contributing to, the Noir programming language and the Aztec network.',
       proposalLink: '/path/to/proposal',
-      grantAmount: "500'000",
+      grantAmount: "500'00",
       maxPerApplication: "20'000",
       tags: [
         { name: 'Data', bgColor: 'bg-purple-300' },
@@ -104,7 +104,7 @@ const MarketPlace = () => {
       description:
         'The Aztec Grants Program supports developers building with, and contributing to, the Noir programming language and the Aztec network.',
       proposalLink: '/path/to/proposal',
-      grantAmount: "500'000",
+      grantAmount: "500'00",
       maxPerApplication: "20'000",
       tags: [
         { name: 'Data', bgColor: 'bg-purple-300' },
@@ -118,7 +118,7 @@ const MarketPlace = () => {
   return (
     <div className="container mx-auto p-4 px-6 md:px-10 pb-12">
       <NavBar />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-[7rem]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-[7rem]">
         {cardData.map((data, index) => (
           <MarketPlaceCard key={index} {...data} />
         ))}
