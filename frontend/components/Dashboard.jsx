@@ -3,23 +3,20 @@ import React from 'react';
 import DashboardCard from './DashboardCard';
 import SkillSvg from '../assets/skills.svg';
 import Image from 'next/image';
-import { Lexend, Prosto_One, IBM_Plex_Sans } from 'next/font/google';
+import CreditFactor from './CreditFactor';
+import { Lexend, Prosto_One } from 'next/font/google';
 
 const lexend = Lexend({ subsets: ['latin'] });
 const prostoOne = Prosto_One({ subsets: ['latin'], weight: ['400'] });
-const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '300'],
-});
 
 const Dashboard = () => {
   return (
-    <div className="px-6 md:px-10 flex flex-col gap-10">
-      <main className=" w-full mt-[8rem]  h-96 gap-5 flex flex-col lg:flex-row ">
+    <main className="px-6 md:px-10 flex flex-col gap-10 h-full pb-16">
+      <div className=" w-full mt-[8rem] h-full sm:h-96 gap-5 flex flex-col lg:flex-row ">
         <section className="w-full basis-[50%] flex-1 sm:h-96 px-6 py-10 bg-zinc-900 rounded-3xl flex-col justify-center items-center gap-10 flex">
           <header className="flex-col justify-center items-center gap-2 flex">
             <h1
-              className={`${prostoOne.className} text-center text-purple-500 text-[28px] font-normal leading-10`}>
+              className={`${prostoOne.className} text-purple-500 text-[28px] font-normal leading-10`}>
               Your skill match score
             </h1>
             <div className="w-[200px] h-[203.38px] relative">
@@ -60,8 +57,41 @@ const Dashboard = () => {
             onButtonClick={() => console.log('Loan request clicked')}
           />
         </aside>
-      </main>
-    </div>
+      </div>
+      <div className="w-full min-h-[400px] h-full p-4 md:p-10 bg-zinc-900 rounded-3xl flex flex-col lg:flex-row justify-start items-center gap-10">
+        <div className="w-full md:basis-[50%] p-5 bg-neutral-800 rounded-2xl flex flex-col justify-center items-center gap-10">
+          <div
+            className={`text-lime-400 text-lg md:text-[28px] font-normal ${prostoOne.className} leading-10`}>
+            Trust credit score
+          </div>
+          <div className="w-60 h-[200px] relative">
+            <div
+              className={`text-center text-white text-lg md:text-[26.46px] font-normal ${prostoOne.className} leading-[30.07px]`}>
+              90%
+            </div>
+          </div>
+        </div>
+        <div className="w-full md:basis-[50%] flex flex-col justify-center items-center gap-5">
+          <div
+            className={`h-[42px] flex flex-col justify-center items-start ${lexend.className}`}>
+            <div className="text-zinc-200 text-md md:text-[22px] font-semibold leading-normal">
+              Credit Factors
+            </div>
+            <div className="text-stone-300 text-xs font-normal leading-[18px]">
+              Your credit factors are
+            </div>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
+            <CreditFactor percentage="30%" label="Wallet Address" />
+            <CreditFactor percentage="30%" label="Wallet Address" />
+            <CreditFactor percentage="30%" label="Wallet Address" />
+            <CreditFactor percentage="30%" label="Wallet Address" />
+            <CreditFactor percentage="30%" label="Wallet Address" />
+            <CreditFactor percentage="30%" label="Wallet Address" />
+          </div>
+        </div>
+      </div>
+    </main>
   );
 };
 
