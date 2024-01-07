@@ -7,9 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-
+      fontFamily: {
+        MXWasgard: ['MXWasgard'],
+      },
     },
   },
   plugins: [],
-  darkMode: 'class'
-}
+  darkMode: 'class',
+};
