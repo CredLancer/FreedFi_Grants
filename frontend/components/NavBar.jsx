@@ -3,7 +3,7 @@ import ThemeSwitch from '@/components/ThemeSwitch';
 
 const NavBar = () => {
   return (
-    <div className="w-full  container px-6 md:px-10 mx-auto fixed inset-0 top-5">
+    <div className="w-full h-fit container px-6 md:px-10 mx-auto fixed inset-0 top-5 z-[100]">
       <div className=" flex items-center justify-between px-6 md:px-8 md:py-2 bg-neutral-800 rounded-[40px] h-[72px] ">
         <div className="text-white text-[40px] font-MXWasgard leading-9">
           FreedFi
