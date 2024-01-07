@@ -15,7 +15,7 @@ const ibmPlexSans = IBM_Plex_Sans({
 const Dashboard = () => {
   return (
     <div className="px-6 md:px-10 flex flex-col gap-10">
-      <main className=" w-full mt-[7rem]  h-96 gap-5 flex flex-col lg:flex-row ">
+      <main className=" w-full mt-[8rem]  h-96 gap-5 flex flex-col lg:flex-row ">
         <section className="w-full basis-[50%] flex-1 sm:h-96 px-6 py-10 bg-zinc-900 rounded-3xl flex-col justify-center items-center gap-10 flex">
           <header className="flex-col justify-center items-center gap-2 flex">
             <h1
