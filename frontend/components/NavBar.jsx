@@ -1,7 +1,9 @@
 import React from 'react';
-import ThemeSwitch from '@/components/ThemeSwitch';
+import ThemeSwitch from '../components/ThemeSwitch';
 import { Lexend } from 'next/font/google';
 import Link from 'next/link';
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+
 
 const lexend = Lexend({ subsets: ['latin'] });
 
@@ -20,6 +22,7 @@ const NavBar = () => {
             className="text-zinc-200 px-2 py-2 transition-all duration-200 ease-in-out hover:scale-110 text-base font-medium  leading-normal">
             Marketplace
           </Link>
+          <ConnectButton accountStatus={'avatar'} />
           <ThemeSwitch />
         </div>
       </div>

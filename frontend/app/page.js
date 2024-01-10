@@ -1,5 +1,5 @@
-import Dashboard from '@/components/Dashboard';
-import NavBar from '@/components/NavBar';
+import Dashboard from '../components/Dashboard';
+import NavBar from '../components/NavBar';
 import React from 'react';
 
 const Home = () => {
