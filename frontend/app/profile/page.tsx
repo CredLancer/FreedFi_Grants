@@ -10,7 +10,7 @@
 
 import { useAccount, useContractWrite } from 'wagmi'
 import { RegisteryAddress } from '../../lib/utils'
-import RegistryAbi from '../../abi/Registery.json'
+import RegistryAbi from '../../abi/Registry.json'
 
 const Profile = () => {
 
@@ -29,7 +29,7 @@ const Profile = () => {
     address: RegisteryAddress,
     abi: RegistryAbi.abi,
     functionName: 'createProfile',
-    args: [1222, 'thename', metadata, address, [address]]
+    args: [121, 'thename', metadata, address, [address]]
   })
 
   const createProfileHandler = async () => {
@@ -40,6 +40,7 @@ const Profile = () => {
        
         // toast.success('Successfully Deposited!')
         // router.push('/dashboard')
+        console.log('createProfileData')
         console.log(createProfileData)
       }
     } catch (error) {

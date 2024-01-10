@@ -5,11 +5,47 @@ import SkillSvg from '../assets/skills.svg';
 import Image from 'next/image';
 import CreditFactor from './CreditFactor';
 import { Lexend, Prosto_One } from 'next/font/google';
+import { useContractWrite } from 'wagmi'
+import { RegisteryAddress } from '../lib/utils'
+import RegistryAbi from '../abi/Registry.json'
 
 const lexend = Lexend({ subsets: ['latin'] });
 const prostoOne = Prosto_One({ subsets: ['latin'], weight: ['400'] });
 
 const Dashboard = () => {
+
+
+  const {
+    data: createProfileData,
+    isLoading: createProfileLoading,
+    writeAsync: createProfileWrite,
+  } = useContractWrite({
+    address: RegisteryAddress,
+    abi: RegistryAbi.abi,
+    functionName: 'createProfile',
+    // args: [1222, 'thename', metadata, address, [address]]
+  })
+
+  const requestGrantHandler = async () => {
+    return console.log('here')
+    try {
+      await createProfileWrite()
+
+      if (!createProfileLoading) {
+       
+        // toast.success('Successfully Deposited!')
+        // router.push('/dashboard')
+        console.log(createProfileData)
+      }
+    } catch (error) {
+      // setShowModal(false)
+      // toast.error('Are you an investor? Contact the support team')
+      console.log('Could not invest: ', error)
+    }
+  }
+
+
+
   return (
     <main className="px-6 md:px-10 flex flex-col gap-10 h-full pb-16">
       <div className=" w-full mt-[8rem] h-full sm:h-96 gap-5 flex flex-col lg:flex-row ">
@@ -46,7 +82,7 @@ const Dashboard = () => {
             subtitle="Your applications"
             amount="20,000"
             buttonText="Request Grant"
-            onButtonClick={() => console.log('Loan request clicked')}
+            onButtonClick={requestGrantHandler}
           />
           <DashboardCard
             emoji="🚀"
@@ -54,7 +90,7 @@ const Dashboard = () => {
             subtitle="Your applications"
             amount="20,000"
             buttonText="Invest Now"
-            onButtonClick={() => console.log('Loan request clicked')}
+            onButtonClick={() => console.log('Loan request clicked.')}
           />
         </aside>
       </div>
