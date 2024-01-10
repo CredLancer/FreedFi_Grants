@@ -45,7 +45,7 @@ const Dashboard = () => {
             title="Funded"
             subtitle="Your applications"
             amount="20,000"
-            buttonText="Request Loan"
+            buttonText="Request Grant"
             onButtonClick={() => console.log('Loan request clicked')}
           />
           <DashboardCard
