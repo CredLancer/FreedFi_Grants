@@ -30,7 +30,7 @@ const Profile = () => {
 
   const createProfileHandler = async () => {
     try {
-      debugger
+      
       createProfileWrite()
  console.log(createProfileData)
       if (!createProfileLoading) {

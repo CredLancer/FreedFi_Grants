@@ -29,7 +29,7 @@ const Dashboard = () => {
       address: RegistryAddress,
       abi: RegistryAbi.abi,
       functionName: 'createProfile',
-      args: [78297, 'thename', metadata, address, [address]]
+      args: [appNonce(), 'thename', metadata, address, [address]]
     })
   
     const createProfileHandler = async () => {
