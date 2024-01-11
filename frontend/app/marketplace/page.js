@@ -1,7 +1,7 @@
 import React from 'react';
-import MarketPlaceCard from '@/components/MarketPlaceCard';
-import ProfileImg from '@/assets/profile-img.png';
-import NavBar from '@/components/NavBar';
+import MarketPlaceCard from '../../components/MarketPlaceCard';
+import ProfileImg from '../../assets/profile-img.png';
+import NavBar from '../../components/NavBar';
 
 const MarketPlace = () => {
   const cardData = [
