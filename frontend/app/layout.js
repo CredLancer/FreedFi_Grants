@@ -2,6 +2,7 @@
 import { Inter, Lexend, Prosto_One } from 'next/font/google'
 import './globals.css'
 import Provider from './themeProvider';
+import NavBar from '../components/NavBar';
 import '@rainbow-me/rainbowkit/styles.css'
 
 
@@ -56,7 +57,10 @@ export default function RootLayout({ children}) {
       <body>
         <WagmiConfig config={wagmiConfig}>
           <RainbowKitProvider chains={chains}>
-            <Provider>{children}</Provider>
+            <Provider>
+              <NavBar />
+              {children}
+            </Provider>
           </RainbowKitProvider>
         </WagmiConfig>
       </body>

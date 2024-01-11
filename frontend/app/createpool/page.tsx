@@ -1,81 +1,66 @@
-
 'use client'
 
-import { useAccount, useContractWrite, useContractEvent } from 'wagmi'
-import { RegistryAddress, appNonce } from '../../lib/utils'
-import RegistryAbi from '../../abi/Registry.json'
-import { useEffect, useState } from 'react'
+import React, { useState } from 'react';
+import { useContractWrite } from 'wagmi'
+import AlloImplementationAbi from '../../abi/AlloImplementation.json'
+import { AlloImplementationAddress, appNonce } from '../../lib/utils'
+import { parseEther } from 'viem';
 
-const Profile = () => {
+const CreatePool = () => {
 
-  const { address } = useAccount()
+  const meta = {
+    protocol: 1,  // Example value for the protocol field (IPFS = 1)
+    pointer: 'your_ipfs_hash_here',  // Example IPFS hash as a string
+  };
 
-  const [profileName, setProfileName] = useState('')
-
-  const metadata = {
-  protocol: 1,  // Example value for the protocol field (IPFS = 1)
-  pointer: 'your_ipfs_hash_here',  // Example IPFS hash as a string
-};
+  const [profileId, setProfileId] = useState('48656c6c6f2c20457468657265756d21')
+  const [strategy, setStrategy] = useState('0xD13ec67938B5E9Cb05A05D8e160daF02Ed5ea9C9')
+  const [initStrategyData, setInitStrategyData] = useState('0xD13ec67938B5E9Cb05A05D8e160daF02Ed5ea9C9')
+  const [token, setToken] = useState('0xC3436dFF46812cf0A9705a0D3bCbe26fd3901961')
+  const [amount, setAmount] = useState('0.003')
+  const [metadata, setMetadata] = useState(meta)
+  const [managers, setManagers] = useState(['0xC3436dFF46812cf0A9705a0D3bCbe26fd3901961'])
 
   const {
-    data: createProfileData,
-    isLoading: createProfileLoading,
-    write: createProfileWrite,
+    data: createPoolData,
+    isLoading: createPoolLoading,
+    writeAsync: createPoolWrite,
   } = useContractWrite({
-    address: RegistryAddress,
-    abi: RegistryAbi.abi,
-    functionName: 'createProfile',
-    args: [appNonce(), 'thename', metadata, address, [address]]
+    address: AlloImplementationAddress,
+    abi: AlloImplementationAbi.abi,
+    functionName: 'createPool',
+    args: [
+      profileId,  
+      strategy, 
+      initStrategyData,
+      token,
+      parseEther(amount),
+      metadata,
+      managers
+    ],
+    value: parseEther(amount)
   })
 
-  const createProfileHandler = async () => {
+  const createPoolHandler = async () => {
     try {
-      debugger
-      createProfileWrite()
- console.log(createProfileData)
-      if (!createProfileLoading) {
+   
+      createPoolWrite()
+ console.log(createPoolData)
+      if (!createPoolLoading) {
        
-        // toast.success('Successfully Deposited!')
-        // router.push('/dashboard')
-        console.log('createProfileData')
-        console.log(createProfileData)
+        console.log('createPoolData')
+        console.log(createPoolData)
       }
     } catch (error) {
-      // setShowModal(false)
-      // toast.error('Are you an investor? Contact the support team')
       console.log('Could not invest: ', error)
     }
   }
 
-    // Use the contract event hook to listen for the ProfileCreated event
-    const contractEventHook = useContractEvent({
-      address: RegistryAddress,
-      abi: RegistryAbi.abi,
-      eventName: 'ProfileCreated',
-    });
-    const profileCreatedEventData = contractEventHook?.data || {};
-    useEffect(() => {
-      // Check if the ProfileCreated event data is available
-      if (profileCreatedEventData) {
-        console.log('Profile Created Event Data:', profileCreatedEventData);
-  
-        // You can extract relevant information from the event data
-        const profileId = profileCreatedEventData.profileId;
-        const owner = profileCreatedEventData.owner;
-
-        console.log(profileCreatedEventData)
-  
-        // Perform actions or show notifications based on the event
-        // toast.success(`Profile ${profileId} created by ${owner}!`);
-        // router.push('/dashboard'); // Redirect to the dashboard after creating a profile
-      }
-    }, [profileCreatedEventData]);
-  
-      return (
+  return (
     <>
-      <div className="container mx-auto p-4 px-6 md:px-10 pb-12 flex justify-center items-center flex-col">
+      <div className="container mx-auto p-4 px-6 md:px-10 pb-12 mt-28 flex justify-center items-center flex-col">
         <h1 className="text-3xl text-center">
-          Create Profile With <br />{' '}
+          Create Pool With <br />{' '}
           <span className="text-blue-400">Allo Protocol</span>
         </h1>
         <form className="w-1/2">
@@ -85,14 +70,13 @@ const Profile = () => {
                 <label
                   className="uppercase tracking-wide text-white mb-4 text-xs font-bold"
                   for="company">
-                  Profile Name *
+                  Grant Name *
                 </label>
                 <input
                   className="w-full bg-black mt-2 text-white border border-gray-200 rounded py-3 px-4 mb-3"
                   id="company"
                   type="text"
-                  placeholder="Profile Name"
-                  onChange={e => setProfileName(e.target.value)}
+                  placeholder="OTC Swap"
                 />
                 <div>
                   <span className="text-red-500 text-xs italic">
@@ -171,8 +155,8 @@ const Profile = () => {
                     className="w-full bg-black mt-2 text-white border text-xs py-3 px-4 pr-8 mb-3 rounded"
                     id="location">
                     <option>Direct</option>
-                    <option>Enugu</option>
-                    <option>Lagos</option>
+                    <option>Vault</option>
+                    <option>Simple</option>
                   </select>
                 </div>
               </div>
@@ -213,8 +197,8 @@ const Profile = () => {
             
             <div className="-mx-3 md:flex mt-4">
               <div className="md:w-full px-3">
-                <button type="button" onClick={createProfileHandler} className="w-full px-4 py-3 rounded-2xl border border-zinc-600 text-zinc-200 text-base font-medium bg-transparent hover:bg-zinc-800 cursor-pointer transition-colors">
-                  Create Profile
+                <button type="button" onClick={createPoolHandler} className="w-full px-4 py-3 rounded-2xl border border-zinc-600 text-zinc-200 text-base font-medium bg-transparent hover:bg-zinc-800 cursor-pointer transition-colors">
+                  Create Pool
                 </button>
               </div>
             </div>
@@ -223,6 +207,6 @@ const Profile = () => {
       </div>
     </>
   );
-}
+};
 
-export default Profile
+export default CreatePool;
