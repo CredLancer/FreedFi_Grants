@@ -5,8 +5,8 @@ const CreatePool = () => {
     <>
       <div className="container mx-auto p-4 px-6 md:px-10 pb-12 flex justify-center items-center flex-col">
         <h1 className="text-3xl text-center mt-8">
-        FreedFi Grant Request powered  <br />{' '}
-          <span className="text-blue-400 mt-3">by ALLO Protocol</span>
+        FreedFi Grant Request   <br />{' '}
+          <span className="text-blue-400 mt-3">powered by ALLO</span>
         </h1>
         <form className="w-1/2">
           <div class="bg-black shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
