@@ -5,45 +5,49 @@ import SkillSvg from '../assets/skills.svg';
 import Image from 'next/image';
 import CreditFactor from './CreditFactor';
 import { Lexend, Prosto_One } from 'next/font/google';
-import { useContractWrite } from 'wagmi'
-import { RegisteryAddress } from '../lib/utils'
+import { useContractWrite, useAccount } from 'wagmi'
+import { RegistryAddress, appNonce } from '../lib/utils'
 import RegistryAbi from '../abi/Registry.json'
 
 const lexend = Lexend({ subsets: ['latin'] });
 const prostoOne = Prosto_One({ subsets: ['latin'], weight: ['400'] });
 
 const Dashboard = () => {
+  const { address } = useAccount()
 
-
-  const {
-    data: createProfileData,
-    isLoading: createProfileLoading,
-    writeAsync: createProfileWrite,
-  } = useContractWrite({
-    address: RegisteryAddress,
-    abi: RegistryAbi.abi,
-    functionName: 'createProfile',
-    // args: [1222, 'thename', metadata, address, [address]]
-  })
-
-  const requestGrantHandler = async () => {
-    return console.log('here')
-    try {
-      await createProfileWrite()
-
-      if (!createProfileLoading) {
-       
-        // toast.success('Successfully Deposited!')
-        // router.push('/dashboard')
-        console.log(createProfileData)
+  const metadata = {
+    protocol: 1,  // Example value for the protocol field (IPFS = 1)
+    pointer: 'your_ipfs_hash_here',  // Example IPFS hash as a string
+  };
+  
+    const {
+      data: createProfileData,
+      isLoading: createProfileLoading,
+      writeAsync: createProfileWrite,
+    } = useContractWrite({
+      address: RegistryAddress,
+      abi: RegistryAbi.abi,
+      functionName: 'createProfile',
+      args: [78979, 'thename', metadata, address, [address]]
+    })
+  
+    const createProfileHandler = async () => {
+      try {
+   
+        await createProfileWrite()
+   console.log(createProfileData)
+   window.location.href = '/createpool'
+        if (!createProfileLoading) {
+         
+          // toast.success('Successfully Deposited!')
+          // window.location.href = '/createpool'
+        }
+      } catch (error) {
+        // setShowModal(false)
+        // toast.error('Are you an investor? Contact the support team')
+        console.log('Could not invest: ', error)
       }
-    } catch (error) {
-      // setShowModal(false)
-      // toast.error('Are you an investor? Contact the support team')
-      console.log('Could not invest: ', error)
     }
-  }
-
 
 
   return (
@@ -82,7 +86,7 @@ const Dashboard = () => {
             subtitle="Your applications"
             amount="20,000"
             buttonText="Request Grant"
-            onButtonClick={requestGrantHandler}
+            onButtonClick={createProfileHandler}
           />
           <DashboardCard
             emoji="🚀"
