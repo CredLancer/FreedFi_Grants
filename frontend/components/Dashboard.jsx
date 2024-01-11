@@ -8,6 +8,7 @@ import { Lexend, Prosto_One } from 'next/font/google';
 import { useContractWrite, useAccount } from 'wagmi'
 import { RegistryAddress, appNonce } from '../lib/utils'
 import RegistryAbi from '../abi/Registry.json'
+import toast, { Toaster } from 'react-hot-toast'
 
 const lexend = Lexend({ subsets: ['latin'] });
 const prostoOne = Prosto_One({ subsets: ['latin'], weight: ['400'] });
@@ -28,20 +29,18 @@ const Dashboard = () => {
       address: RegistryAddress,
       abi: RegistryAbi.abi,
       functionName: 'createProfile',
-      args: [78979, 'thename', metadata, address, [address]]
+      args: [78297, 'thename', metadata, address, [address]]
     })
   
     const createProfileHandler = async () => {
       try {
    
         await createProfileWrite()
-   console.log(createProfileData)
-   window.location.href = '/createpool'
-        if (!createProfileLoading) {
-         
-          // toast.success('Successfully Deposited!')
-          // window.location.href = '/createpool'
-        }
+        setTimeout(() => {
+          toast.success('Profile created!')
+          window.location.href = '/createpool'
+        }, 3000)
+  
       } catch (error) {
         // setShowModal(false)
         // toast.error('Are you an investor? Contact the support team')
@@ -52,6 +51,7 @@ const Dashboard = () => {
 
   return (
     <main className="px-6 md:px-10 flex flex-col gap-10 h-full pb-16">
+      <Toaster />
       <div className=" w-full mt-[8rem] h-full sm:h-96 gap-5 flex flex-col lg:flex-row ">
         <section className="w-full basis-[50%] flex-1 sm:h-96 px-6 py-10 bg-zinc-900 rounded-3xl flex-col justify-center items-center gap-10 flex">
           <header className="flex-col  items-center gap-2 flex">
@@ -85,7 +85,7 @@ const Dashboard = () => {
             title="Funded"
             subtitle="Your applications"
             amount="20,000"
-            buttonText="Request Grant"
+            buttonText={createProfileLoading ? 'Requesting ... ' : 'Request Grant'}
             onButtonClick={createProfileHandler}
           />
           <DashboardCard

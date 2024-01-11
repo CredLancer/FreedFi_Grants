@@ -58,7 +58,7 @@ const CreatePool = () => {
 
   return (
     <>
-      <div className="container mx-auto p-4 px-6 md:px-10 pb-12 flex justify-center items-center flex-col">
+      <div className="container mx-auto p-4 px-6 md:px-10 pb-12 mt-28 flex justify-center items-center flex-col">
         <h1 className="text-3xl text-center">
           Create Pool With <br />{' '}
           <span className="text-blue-400">Allo Protocol</span>
@@ -155,8 +155,8 @@ const CreatePool = () => {
                     className="w-full bg-black mt-2 text-white border text-xs py-3 px-4 pr-8 mb-3 rounded"
                     id="location">
                     <option>Direct</option>
-                    <option>Enugu</option>
-                    <option>Lagos</option>
+                    <option>Vault</option>
+                    <option>Simple</option>
                   </select>
                 </div>
               </div>
