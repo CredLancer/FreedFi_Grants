@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useContractWrite } from 'wagmi'
 import AlloImplementationAbi from '../../abi/AlloImplementation.json'
-import { AlloImplementationAddress, appNonce } from '../../lib/utils'
+import { AlloImplementationAddress } from '../../lib/utils'
 import { parseEther } from 'viem';
 
 const CreatePool = () => {
