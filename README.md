@@ -37,13 +37,16 @@ Pitch Deck: https://freedfi.my.canva.site/
 Value Credential Contract Deployment: https://sepolia.arbiscan.io/address/0x210b7a76151d745cb7cda4c64ab05ef5609679e7
 
 Original FreedFi for Loans: our original contracts (also deployed on Arbitrum) https://github.com/CredLancer/FreedFi_Updated
+
 GetaLoan.sol https://github.com/CredLancer/FreedFi_Updated/blob/main/contracts/src/GetALoan.sol (Opens smart contract for a loan request)
+
 PoolController.sol https://github.com/CredLancer/FreedFi_Updated/blob/main/contracts/src/PoolController.sol (Distribution of Loan through FreedFi Pool)
+
 SimpleCredentialVerifier.sol https://github.com/CredLancer/FreedFi_Updated/blob/main/contracts/src/trustcredentials/SimpleCredentialsVerifier.sol (Soulbound Credential after payback or Proof of Impact)
 
 Updated FreedFi with Allo Protocol: https://github.com/CredLancer/FreedFi_Updated
-Allo Registry.sol for grantee and investor verified data
-Allo Pool.sol for grant distribution (with additional function to require Proof of Impact)
-SimpleCredentialVerifier.sol (now provids Value Credential Data - date of grant, date dispersed, date Proof of Impact received, date PoI approved by investors)
+- Allo Registry.sol for grantee and investor verified data
+- Allo Pool.sol for grant distribution (with additional function to require Proof of Impact)
+- SimpleCredentialVerifier.sol (now provids Value Credential Data - date of grant, date dispersed, date Proof of Impact received, date PoI approved by investors)
 
 
